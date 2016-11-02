@@ -25,8 +25,8 @@ defmodule UmbrellaTest.Mixfile do
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps folder
   defp deps do
-    [{:distillery, github: "bitwalker/distillery", override: true},
-     {:edeliver, "~> 1.4.0"},
+    [{:edeliver, "~> 1.4.0"},
+     {:distillery, "~> 0.10"},
      {:conform, github: "bitwalker/conform"}]
   end
 end
