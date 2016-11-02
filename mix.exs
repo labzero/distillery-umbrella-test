@@ -26,7 +26,6 @@ defmodule UmbrellaTest.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [{:edeliver, "~> 1.4.0"},
-     {:distillery, "~> 0.10"},
-     {:conform, github: "bitwalker/conform"}]
+     {:distillery, "~> 0.10"}]
   end
 end

@@ -29,16 +29,13 @@ end
 # will be used by default
 release :app_one do
   set version: current_version(:app_one)
-  plugin Conform.ReleasePlugin
 end
 
 release :app_two do
   set version: current_version(:app_two)
-  plugin Conform.ReleasePlugin
 end
 
 release :master_app do
   set version: current_version(:master_app)
-  plugin Conform.ReleasePlugin
 end
 
