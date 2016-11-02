@@ -5,7 +5,11 @@ defmodule UmbrellaTest.Mixfile do
     [apps_path: "apps",
      app: :umbrella_test,
      version: "0.1.0",
-     deps: deps]
+     deps: deps,
+     applications: [
+      :edeliver # always keep at the end of this list
+      ]
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -21,7 +25,8 @@ defmodule UmbrellaTest.Mixfile do
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps folder
   defp deps do
-    [{:distillery, github: "bitwalker/distillery"},
+    [{:distillery, github: "bitwalker/distillery", override: true},
+     {:edeliver, "~> 1.4.0"},
      {:conform, github: "bitwalker/conform"}]
   end
 end

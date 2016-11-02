@@ -1,0 +1,31 @@
+APP="master_app"
+
+BUILD_HOST="ec2-54-191-43-35.us-west-2.compute.amazonaws.com"
+BUILD_USER="ubuntu"
+BUILD_AT="/tmp/edeliver/distillery-umbrella-test/builds"
+
+STAGING_HOSTS="ec2-54-191-43-35.us-west-2.compute.amazonaws.com"
+STAGING_USER="ubuntu"
+DELIVER_TO="/home/web"
+
+RELEASE_DIR="$BUILD_AT/apps/$APP/rel/$APP"
+
+set_git_project_directory() {
+  ACTUAL_PROJECT_DIR="$DELIVER_TO"
+  DELIVER_TO="$(dirname $DELIVER_TO)"
+  DELIVER_TO="$(dirname $DELIVER_TO)"
+}
+
+restore_build_directory() {
+  DELIVER_TO="$ACTUAL_PROJECT_DIR"
+}
+
+# For *Phoenix* projects, symlink prod.secret.exs to our tmp source
+pre_erlang_get_and_update_deps() {
+  local _prod_secret_path="/home/builder/prod.secret.exs"
+  if [ "$TARGET_MIX_ENV" = "prod" ]; then
+    __sync_remote "
+      ln -sfn '$_prod_secret_path' '$BUILD_AT/config/prod.secret.exs'
+    "
+  fi
+}
